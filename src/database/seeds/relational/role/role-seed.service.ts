@@ -41,5 +41,50 @@ export class RoleSeedService {
         }),
       );
     }
+
+    const countManager = await this.repository.count({
+      where: {
+        id: RoleEnum.manager,
+      },
+    });
+
+    if (!countManager) {
+      await this.repository.save(
+        this.repository.create({
+          id: RoleEnum.manager,
+          name: 'Manager',
+        }),
+      );
+    }
+
+    const countPharmacist = await this.repository.count({
+      where: {
+        id: RoleEnum.pharmacist,
+      },
+    });
+
+    if (!countPharmacist) {
+      await this.repository.save(
+        this.repository.create({
+          id: RoleEnum.pharmacist,
+          name: 'Pharmacist',
+        }),
+      );
+    }
+
+    const countCashier = await this.repository.count({
+      where: {
+        id: RoleEnum.cashier,
+      },
+    });
+
+    if (!countCashier) {
+      await this.repository.save(
+        this.repository.create({
+          id: RoleEnum.cashier,
+          name: 'Cashier',
+        }),
+      );
+    }
   }
 }

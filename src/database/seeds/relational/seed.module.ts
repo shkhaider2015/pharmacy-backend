@@ -10,8 +10,17 @@ import { UserSeedModule } from './user/user-seed.module';
 import databaseConfig from '../../config/database.config';
 import appConfig from '../../../config/app.config';
 
+import { categoriesSeedModule } from './categories/categories-seed.module';
+
+import { genericsSeedModule } from './generics/generics-seed.module';
+
+import { productsSeedModule } from './products/products-seed.module';
+
 @Module({
   imports: [
+    productsSeedModule,
+    genericsSeedModule,
+    categoriesSeedModule,
     RoleSeedModule,
     StatusSeedModule,
     UserSeedModule,
