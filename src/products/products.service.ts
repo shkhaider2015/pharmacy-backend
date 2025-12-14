@@ -17,9 +17,6 @@ import { Generics } from '../generics/domain/generics';
 export class productsService {
   constructor(
     private readonly genericsService: GenericsService,
-
-    private readonly genericService: GenericsService,
-
     private readonly categoriesService: CategoriesService,
     private readonly productsRepository: productsRepository,
   ) {}
@@ -69,7 +66,7 @@ export class productsService {
       product.categories = categories;
     }
     if(genericIds){
-      const generics = genericIds && (await this.validateGeneriics(genericIds));
+      const generics = genericIds && (await this.validateGenerics(genericIds));
       product.generics = generics;
     }
 
@@ -93,8 +90,8 @@ export class productsService {
     return categories;
   }
 
-  private async validateGeneriics(genericIds: string[]): Promise<Generics[]> {
-    const generics = await this.genericService.findByIds(genericIds);
+  private async validateGenerics(genericIds: string[]): Promise<Generics[]> {
+    const generics = await this.genericsService.findByIds(genericIds);
     if (generics.length !== genericIds.length) {
       throw new UnprocessableEntityException({
         status: HttpStatus.UNPROCESSABLE_ENTITY,
