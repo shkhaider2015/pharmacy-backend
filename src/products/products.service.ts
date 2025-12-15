@@ -70,15 +70,20 @@ export class productsService {
     id: products['id'],
     updateproductsDto: UpdateproductsDto,
   ): Promise<products | null> {
-    const { categories: categoryIds, generics: genericIds, ...rest } = updateproductsDto;
-    
+    const {
+      categories: categoryIds,
+      generics: genericIds,
+      ...rest
+    } = updateproductsDto;
+
     const product = new products();
     Object.assign(product, rest);
     if (categoryIds) {
-      const categories = categoryIds && (await this.validateCategories(categoryIds));
+      const categories =
+        categoryIds && (await this.validateCategories(categoryIds));
       product.categories = categories;
     }
-    if(genericIds){
+    if (genericIds) {
       const generics = genericIds && (await this.validateGenerics(genericIds));
       product.generics = generics;
     }

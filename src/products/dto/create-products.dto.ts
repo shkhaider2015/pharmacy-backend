@@ -1,4 +1,3 @@
-import { GenericsDto } from '../../generics/dto/generics.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsNotEmpty,
@@ -8,13 +7,11 @@ import {
   IsOptional,
   IsArray,
   IsUUID,
-  ValidateNested,
   IsDate,
 } from 'class-validator';
 
 import {
   // decorators here
-  Type,
   Transform,
 } from 'class-transformer';
 

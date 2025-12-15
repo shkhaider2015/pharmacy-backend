@@ -14,5 +14,4 @@ export class FindAllproductsDto {
   @IsNumber()
   @IsOptional()
   limit?: number;
-
 }
