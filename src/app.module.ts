@@ -35,8 +35,11 @@ import { CategoriesModule } from './categories/categories.module';
 
 import { GenericsModule } from './generics/generics.module';
 
+import { ManufacturersModule } from './manufacturers/manufacturers.module';
+
 @Module({
   imports: [
+    ManufacturersModule,
     GenericsModule,
     CategoriesModule,
     productsModule,

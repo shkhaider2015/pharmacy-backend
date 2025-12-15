@@ -16,8 +16,11 @@ import { genericsSeedModule } from './generics/generics-seed.module';
 
 import { productsSeedModule } from './products/products-seed.module';
 
+import { ManufacturerSeedModule } from './manufacturer/manufacturer-seed.module';
+
 @Module({
   imports: [
+    ManufacturerSeedModule,
     productsSeedModule,
     genericsSeedModule,
     categoriesSeedModule,
