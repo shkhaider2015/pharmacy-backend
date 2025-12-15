@@ -70,6 +70,30 @@ export class productsController {
     );
   }
 
+  @Get('with-relations')
+  @ApiOkResponse({
+    type: InfinityPaginationResponse(products),
+  })
+  async findAllWithRelations(
+    @Query() query: FindAllproductsDto,
+  ): Promise<InfinityPaginationResponseDto<products>> {
+    const page = query?.page ?? 1;
+    let limit = query?.limit ?? 10;
+    if (limit > 50) {
+      limit = 50;
+    }
+
+    return infinityPagination(
+      await this.productsService.findAllWithRelations({
+        paginationOptions: {
+          page,
+          limit,
+        },
+      }),
+      { page, limit },
+    );
+  }
+
   @Get(':id')
   @ApiParam({
     name: 'id',

@@ -36,6 +36,20 @@ export class productsRelationalRepository implements productsRepository {
     return entities.map((entity) => productsMapper.toDomain(entity));
   }
 
+  async findAllWithRelations({
+    paginationOptions,
+  }: {
+    paginationOptions: IPaginationOptions;
+  }): Promise<products[]> {
+    const entities = await this.productsRepository.find({
+      skip: (paginationOptions.page - 1) * paginationOptions.limit,
+      take: paginationOptions.limit,
+      relations: ['categories', 'generics'],
+    });
+
+    return entities.map((entity) => productsMapper.toDomain(entity));
+  }
+
   async findById(id: products['id']): Promise<NullableType<products>> {
     const entity = await this.productsRepository.findOne({
       where: { id },

@@ -45,6 +45,19 @@ export class productsService {
     });
   }
 
+  findAllWithRelations({
+    paginationOptions,
+  }: {
+    paginationOptions: IPaginationOptions;
+  }): Promise<products[]> {
+    return this.productsRepository.findAllWithRelations({
+      paginationOptions: {
+        page: paginationOptions.page,
+        limit: paginationOptions.limit,
+      },
+    });
+  }
+
   findById(id: products['id']): Promise<products | null> {
     return this.productsRepository.findById(id);
   }

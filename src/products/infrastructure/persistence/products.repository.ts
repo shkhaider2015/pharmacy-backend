@@ -14,6 +14,12 @@ export abstract class productsRepository {
     paginationOptions: IPaginationOptions;
   }): Promise<products[]>;
 
+  abstract findAllWithRelations({
+    paginationOptions,
+  }: {
+    paginationOptions: IPaginationOptions;
+  }): Promise<products[]>;
+
   abstract findById(id: products['id']): Promise<NullableType<products>>;
 
   abstract findByIds(ids: products['id'][]): Promise<products[]>;
