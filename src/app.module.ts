@@ -45,8 +45,11 @@ import { PurchaseOrderItemsModule } from './purchase-order-items/purchase-order-
 
 import { CustomersModule } from './customers/customers.module';
 
+import { SellOrdersModule } from './sell-orders/sell-orders.module';
+
 @Module({
   imports: [
+    SellOrdersModule,
     CustomersModule,
     PurchaseOrderItemsModule,
     PurchaseOrdersModule,

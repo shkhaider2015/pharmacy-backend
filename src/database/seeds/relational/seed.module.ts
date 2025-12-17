@@ -26,8 +26,11 @@ import { PurchaseOrderItemSeedModule } from './purchase-order-item/purchase-orde
 
 import { CustomerSeedModule } from './customer/customer-seed.module';
 
+import { SellOrderSeedModule } from './sell-order/sell-order-seed.module';
+
 @Module({
   imports: [
+    SellOrderSeedModule,
     CustomerSeedModule,
     PurchaseOrderItemSeedModule,
     PurchaseOrderSeedModule,
