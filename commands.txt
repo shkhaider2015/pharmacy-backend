@@ -1,15 +1,21 @@
-Create Module/Entity
+------- Create Module/Entity ------------
 npm run generate:resource:relational -- --name PurchaseOrderItem
 
-Add Property To Entity
+------- Add Property To Entity ----------
 npm run add:property:to-relational
 
-Create New Migration
+------- Create New Migration ------------
 npm run migration:generate -- ./src/database/migrations/migrationName
 
-Create Seed file for Entity
+------- Run Migration -------------------
+npm run migration:run
+
+------- Create Seed file for Entity -----
 npm run seed:create:relational PurchaseOrder
 
+------- Run seed ------------------------
+npm run seed:run:relational
 
-lint Command
+
+------- lint Command --------------------
 npm run lint -- --fix
