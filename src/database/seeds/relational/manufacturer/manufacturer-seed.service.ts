@@ -19,6 +19,8 @@ export class ManufacturerSeedService {
           name: 'Manufacturer A',
           short: 'MA',
           origin: 'USA',
+          address: '100 Industrial Way, Anytown, USA',
+          license: 'LIC123456',
         }),
       );
       await this.repository.save(
@@ -26,6 +28,8 @@ export class ManufacturerSeedService {
           name: 'Manufacturer B',
           short: 'MB',
           origin: 'Germany',
+          address: '200 Manufacturing Rd, Industriestadt, Germany',
+          license: 'LIC654321',
         }),
       );
       await this.repository.save(
@@ -33,6 +37,8 @@ export class ManufacturerSeedService {
           name: 'Manufacturer C',
           short: 'MC',
           origin: 'Japan',
+          address: '300 Production St, Tokyo, Japan',
+          license: 'LIC112233',
         }),
       );
     }

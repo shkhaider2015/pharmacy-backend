@@ -37,8 +37,17 @@ import { GenericsModule } from './generics/generics.module';
 
 import { ManufacturersModule } from './manufacturers/manufacturers.module';
 
+import { SuppliersModule } from './suppliers/suppliers.module';
+
+import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
+
+import { PurchaseOrderItemsModule } from './purchase-order-items/purchase-order-items.module';
+
 @Module({
   imports: [
+    PurchaseOrderItemsModule,
+    PurchaseOrdersModule,
+    SuppliersModule,
     ManufacturersModule,
     GenericsModule,
     CategoriesModule,

@@ -18,8 +18,17 @@ import { productsSeedModule } from './products/products-seed.module';
 
 import { ManufacturerSeedModule } from './manufacturer/manufacturer-seed.module';
 
+import { SupplierSeedModule } from './supplier/supplier-seed.module';
+
+import { PurchaseOrderSeedModule } from './purchase-order/purchase-order-seed.module';
+
+import { PurchaseOrderItemSeedModule } from './purchase-order-item/purchase-order-item-seed.module';
+
 @Module({
   imports: [
+    PurchaseOrderItemSeedModule,
+    PurchaseOrderSeedModule,
+    SupplierSeedModule,
     ManufacturerSeedModule,
     productsSeedModule,
     genericsSeedModule,

@@ -1,0 +1,15 @@
+Create Module/Entity
+npm run generate:resource:relational -- --name PurchaseOrderItem
+
+Add Property To Entity
+npm run add:property:to-relational
+
+Create New Migration
+npm run migration:generate -- ./src/database/migrations/migrationName
+
+Create Seed file for Entity
+npm run seed:create:relational PurchaseOrder
+
+
+lint Command
+npm run lint -- --fix
