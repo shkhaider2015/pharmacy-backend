@@ -21,13 +21,13 @@ const runSeed = async () => {
   await app.get(StatusSeedService).run();
   await app.get(UserSeedService).run();
 
+  await app.get(ManufacturerSeedService).run();
+
   await app.get(categoriesSeedService).run();
 
   await app.get(genericsSeedService).run();
 
   await app.get(productsSeedService).run();
-
-  await app.get(ManufacturerSeedService).run();
 
   await app.get(SupplierSeedService).run();
 

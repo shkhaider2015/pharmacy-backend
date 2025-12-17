@@ -1,3 +1,4 @@
+import { ManufacturersModule } from '../manufacturers/manufacturers.module';
 import { GenericsModule } from '../generics/generics.module';
 import { CategoriesModule } from '../categories/categories.module';
 import {
@@ -10,6 +11,8 @@ import { RelationalproductsPersistenceModule } from './infrastructure/persistenc
 
 @Module({
   imports: [
+    ManufacturersModule,
+
     GenericsModule,
 
     CategoriesModule,

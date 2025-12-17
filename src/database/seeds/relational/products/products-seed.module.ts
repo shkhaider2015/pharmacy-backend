@@ -4,6 +4,7 @@ import { productsEntity } from '../../../../products/infrastructure/persistence/
 import { productsSeedService } from './products-seed.service';
 import { CategoriesEntity } from '../../../../categories/infrastructure/persistence/relational/entities/categories.entity';
 import { GenericsEntity } from '../../../../generics/infrastructure/persistence/relational/entities/generics.entity';
+import { ManufacturerEntity } from '../../../../manufacturers/infrastructure/persistence/relational/entities/manufacturer.entity';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { GenericsEntity } from '../../../../generics/infrastructure/persistence/
       productsEntity,
       CategoriesEntity,
       GenericsEntity,
+      ManufacturerEntity,
     ]),
   ],
   providers: [productsSeedService],

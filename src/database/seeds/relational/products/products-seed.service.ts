@@ -4,6 +4,7 @@ import { productsEntity } from '../../../../products/infrastructure/persistence/
 import { Repository } from 'typeorm';
 import { CategoriesEntity } from '../../../../categories/infrastructure/persistence/relational/entities/categories.entity';
 import { GenericsEntity } from '../../../../generics/infrastructure/persistence/relational/entities/generics.entity';
+import { ManufacturerEntity } from '../../../../manufacturers/infrastructure/persistence/relational/entities/manufacturer.entity';
 
 @Injectable()
 export class productsSeedService {
@@ -16,18 +17,25 @@ export class productsSeedService {
 
     @InjectRepository(GenericsEntity)
     private genericsRepository: Repository<GenericsEntity>,
+
+    @InjectRepository(ManufacturerEntity)
+    private manufacturerRepository: Repository<ManufacturerEntity>,
   ) {}
 
   async run() {
     const count = await this.repository.count();
     const categories = await this.categoriesRepository.find();
     const generics = await this.genericsRepository.find();
+    const manufacturers = await this.manufacturerRepository.find();
 
     if (categories.length === 0) {
       throw new Error('Categories must be seeded before seeding products.');
     }
     if (generics.length === 0) {
       throw new Error('Generics must be seeded before seeding products.');
+    }
+    if (manufacturers.length === 0) {
+      throw new Error('Manufacturers must be seeded before seeding products.');
     }
 
     if (count === 0) {
@@ -39,6 +47,7 @@ export class productsSeedService {
           isPrescriptionRequired: false,
           categories: [categories[0]],
           generics: [generics[0]],
+          manufacturer: manufacturers[0],
         }),
       );
       await this.repository.save(
@@ -49,6 +58,7 @@ export class productsSeedService {
           isPrescriptionRequired: true,
           categories: [categories[1]],
           generics: [generics[1]],
+          manufacturer: manufacturers[1],
         }),
       );
       await this.repository.save(
@@ -59,6 +69,7 @@ export class productsSeedService {
           isPrescriptionRequired: false,
           categories: [categories[5]],
           generics: [generics[2]],
+          manufacturer: manufacturers[2],
         }),
       );
       await this.repository.save(
@@ -69,16 +80,18 @@ export class productsSeedService {
           isPrescriptionRequired: false,
           categories: [categories[2]],
           generics: [generics[3]],
+          manufacturer: manufacturers[0],
         }),
       );
       await this.repository.save(
         this.repository.create({
-          id: 'a9b8c7d6-e5f4-4103-9210-3456789abcdef',
+          id: 'a9b8c7d6-e5f4-4103-9210-3456789abcde',
           name: 'Brufen 200mg Tablet',
           stock: 250,
           isPrescriptionRequired: true,
           categories: [categories[1]],
           generics: [generics[4]],
+          manufacturer: manufacturers[1],
         }),
       );
       await this.repository.save(
@@ -89,6 +102,7 @@ export class productsSeedService {
           isPrescriptionRequired: true,
           categories: [categories[3]],
           generics: [generics[5]],
+          manufacturer: manufacturers[2],
         }),
       );
     }

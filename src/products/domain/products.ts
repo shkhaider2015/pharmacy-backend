@@ -1,8 +1,15 @@
+import { Manufacturer } from '../../manufacturers/domain/manufacturer';
 import { Generics } from '../../generics/domain/generics';
 import { ApiProperty } from '@nestjs/swagger';
 import { Category } from 'src/categories/domain/categories';
 
 export class products {
+  @ApiProperty({
+    type: () => Manufacturer,
+    nullable: true,
+  })
+  manufacturer?: Manufacturer | null;
+
   @ApiProperty({
     type: String,
   })

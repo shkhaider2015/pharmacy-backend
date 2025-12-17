@@ -1,3 +1,4 @@
+import { ManufacturersService } from '../manufacturers/manufacturers.service';
 import {
   Injectable,
   HttpStatus,
@@ -16,18 +17,47 @@ import { Generics } from '../generics/domain/generics';
 @Injectable()
 export class productsService {
   constructor(
+    private readonly manufacturerService: ManufacturersService,
+
     private readonly genericsService: GenericsService,
     private readonly categoriesService: CategoriesService,
     private readonly productsRepository: productsRepository,
   ) {}
 
   async create(createproductsDto: CreateproductsDto): Promise<products> {
-    const { categories: categoryIds, ...rest } = createproductsDto;
-    const categories = await this.validateCategories(categoryIds);
+    const {
+      categories: categoryIds,
+      generics: genericIds,
+      manufacturer,
+      ...rest
+    } = createproductsDto;
 
     const product = new products();
+
+    if (manufacturer) {
+      const manufacturerObject = await this.manufacturerService.findById(
+        manufacturer.id,
+      );
+      if (!manufacturerObject) {
+        product.manufacturer = null;
+      } else {
+        product.manufacturer = manufacturerObject;
+      }
+    } else if (manufacturer === null) {
+      product.manufacturer = null;
+    }
+
+    if (categoryIds) {
+      const categories =
+        categoryIds && (await this.validateCategories(categoryIds));
+      product.categories = categories;
+    }
+    if (genericIds) {
+      const generics = genericIds && (await this.validateGenerics(genericIds));
+      product.generics = generics;
+    }
+
     Object.assign(product, rest);
-    product.categories = categories;
 
     return this.productsRepository.create(product);
   }
@@ -73,11 +103,11 @@ export class productsService {
     const {
       categories: categoryIds,
       generics: genericIds,
+      manufacturer,
       ...rest
     } = updateproductsDto;
 
     const product = new products();
-    Object.assign(product, rest);
     if (categoryIds) {
       const categories =
         categoryIds && (await this.validateCategories(categoryIds));
@@ -87,6 +117,21 @@ export class productsService {
       const generics = genericIds && (await this.validateGenerics(genericIds));
       product.generics = generics;
     }
+
+    if (manufacturer) {
+      const manufacturerObject = await this.manufacturerService.findById(
+        manufacturer.id,
+      );
+      if (!manufacturerObject) {
+        product.manufacturer = null;
+      } else {
+        product.manufacturer = manufacturerObject;
+      }
+    } else if (manufacturer === null) {
+      product.manufacturer = null;
+    }
+
+    Object.assign(product, rest);
 
     return this.productsRepository.update(id, product);
   }

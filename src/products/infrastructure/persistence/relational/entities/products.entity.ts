@@ -1,3 +1,5 @@
+import { ManufacturerEntity } from '../../../../../manufacturers/infrastructure/persistence/relational/entities/manufacturer.entity';
+
 import { GenericsEntity } from '../../../../../generics/infrastructure/persistence/relational/entities/generics.entity';
 import {
   Column,
@@ -7,6 +9,7 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
 import { CategoriesEntity } from 'src/categories/infrastructure/persistence/relational/entities/categories.entity';
@@ -15,6 +18,9 @@ import { CategoriesEntity } from 'src/categories/infrastructure/persistence/rela
   name: 'products',
 })
 export class productsEntity extends EntityRelationalHelper {
+  @ManyToOne(() => ManufacturerEntity, { eager: true, nullable: true })
+  manufacturer?: ManufacturerEntity | null;
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

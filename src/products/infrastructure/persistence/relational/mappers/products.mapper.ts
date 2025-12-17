@@ -1,4 +1,5 @@
 import { products } from '../../../../domain/products';
+import { ManufacturerMapper } from '../../../../../manufacturers/infrastructure/persistence/relational/mappers/manufacturer.mapper';
 
 import { GenericsMapper } from '../../../../../generics/infrastructure/persistence/relational/mappers/generics.mapper';
 
@@ -8,6 +9,12 @@ import { productsEntity } from '../entities/products.entity';
 export class productsMapper {
   static toDomain(raw: productsEntity): products {
     const domainEntity = new products();
+    if (raw.manufacturer) {
+      domainEntity.manufacturer = ManufacturerMapper.toDomain(raw.manufacturer);
+    } else if (raw.manufacturer === null) {
+      domainEntity.manufacturer = null;
+    }
+
     domainEntity.expiryDate = raw.expiryDate;
 
     domainEntity.manufactureDate = raw.manufactureDate;
@@ -38,6 +45,14 @@ export class productsMapper {
 
   static toPersistence(domainEntity: products): productsEntity {
     const persistenceEntity = new productsEntity();
+    if (domainEntity.manufacturer) {
+      persistenceEntity.manufacturer = ManufacturerMapper.toPersistence(
+        domainEntity.manufacturer,
+      );
+    } else if (domainEntity.manufacturer === null) {
+      persistenceEntity.manufacturer = null;
+    }
+
     persistenceEntity.expiryDate = domainEntity.expiryDate;
 
     persistenceEntity.manufactureDate = domainEntity.manufactureDate;
