@@ -44,7 +44,7 @@ export class productsRelationalRepository implements productsRepository {
     const entities = await this.productsRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
-      relations: ['categories', 'generics'],
+      relations: ['categories', 'generics', 'manufacturer'],
     });
 
     return entities.map((entity) => productsMapper.toDomain(entity));
@@ -53,6 +53,7 @@ export class productsRelationalRepository implements productsRepository {
   async findById(id: products['id']): Promise<NullableType<products>> {
     const entity = await this.productsRepository.findOne({
       where: { id },
+      relations: ['categories', 'generics', 'manufacturer'],
     });
 
     return entity ? productsMapper.toDomain(entity) : null;
