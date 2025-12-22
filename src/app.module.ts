@@ -47,8 +47,14 @@ import { CustomersModule } from './customers/customers.module';
 
 import { SellOrdersModule } from './sell-orders/sell-orders.module';
 
+import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
+
+import { PaymentStatusesModule } from './payment-statuses/payment-statuses.module';
+
 @Module({
   imports: [
+    PaymentStatusesModule,
+    PaymentMethodsModule,
     SellOrdersModule,
     CustomersModule,
     PurchaseOrderItemsModule,

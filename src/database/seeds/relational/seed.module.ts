@@ -28,8 +28,14 @@ import { CustomerSeedModule } from './customer/customer-seed.module';
 
 import { SellOrderSeedModule } from './sell-order/sell-order-seed.module';
 
+import { PaymentMethodSeedModule } from './payment-method/payment-method-seed.module';
+
+import { PaymentStatusSeedModule } from './payment-status/payment-status-seed.module';
+
 @Module({
   imports: [
+    PaymentStatusSeedModule,
+    PaymentMethodSeedModule,
     SellOrderSeedModule,
     CustomerSeedModule,
     PurchaseOrderItemSeedModule,

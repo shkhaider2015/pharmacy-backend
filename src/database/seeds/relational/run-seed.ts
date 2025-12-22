@@ -1,4 +1,6 @@
 import { NestFactory } from '@nestjs/core';
+import { PaymentStatusSeedService } from './payment-status/payment-status-seed.service';
+import { PaymentMethodSeedService } from './payment-method/payment-method-seed.service';
 import { SellOrderSeedService } from './sell-order/sell-order-seed.service';
 import { CustomerSeedService } from './customer/customer-seed.service';
 import { PurchaseOrderItemSeedService } from './purchase-order-item/purchase-order-item-seed.service';
@@ -38,6 +40,10 @@ const runSeed = async () => {
   await app.get(CustomerSeedService).run();
 
   await app.get(SellOrderSeedService).run();
+
+  await app.get(PaymentMethodSeedService).run();
+
+  await app.get(PaymentStatusSeedService).run();
 
   await app.close();
 };
