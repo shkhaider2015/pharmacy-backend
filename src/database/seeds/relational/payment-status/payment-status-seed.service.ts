@@ -14,18 +14,26 @@ export class PaymentStatusSeedService {
     const count = await this.repository.count();
 
     if (count === 0) {
-      await this.repository.save(this.repository.create({
-        name: "Pending"
-      }));
-      await this.repository.save(this.repository.create({
-        name: "In Progress"
-      }));
-      await this.repository.save(this.repository.create({
-        name: "Failed"
-      }));
-      await this.repository.save(this.repository.create({
-        name: "Success"
-      }));
+      await this.repository.save(
+        this.repository.create({
+          name: 'Pending',
+        }),
+      );
+      await this.repository.save(
+        this.repository.create({
+          name: 'In Progress',
+        }),
+      );
+      await this.repository.save(
+        this.repository.create({
+          name: 'Failed',
+        }),
+      );
+      await this.repository.save(
+        this.repository.create({
+          name: 'Success',
+        }),
+      );
     }
   }
 }

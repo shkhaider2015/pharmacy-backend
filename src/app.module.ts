@@ -51,8 +51,11 @@ import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 
 import { PaymentStatusesModule } from './payment-statuses/payment-statuses.module';
 
+import { BatchesModule } from './batches/batches.module';
+
 @Module({
   imports: [
+    BatchesModule,
     PaymentStatusesModule,
     PaymentMethodsModule,
     SellOrdersModule,

@@ -32,8 +32,11 @@ import { PaymentMethodSeedModule } from './payment-method/payment-method-seed.mo
 
 import { PaymentStatusSeedModule } from './payment-status/payment-status-seed.module';
 
+import { BatchSeedModule } from './batch/batch-seed.module';
+
 @Module({
   imports: [
+    BatchSeedModule,
     PaymentStatusSeedModule,
     PaymentMethodSeedModule,
     SellOrderSeedModule,
